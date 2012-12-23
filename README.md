@@ -30,6 +30,10 @@ Some apps need to be downloaded from the Internet.
 
 Then you can simply run the script "setup.sh" included in this repo.
 
+```
+curl -L https://raw.github.com/polydice/setup/master/setup.sh | bash -s  
+```
+
 It'll check and install the following things:
 
 1. Xcode Command Line Tools
@@ -37,7 +41,7 @@ It'll check and install the following things:
 3. wget
 4. rbenv
 5. Ruby 1.9.3-p327 (Set as default Ruby)
-6. MySql
+6. MySQL
 7. ImageMagick
 8. Redis
 9. Config Git color for color output
@@ -140,3 +144,13 @@ For better output and services integrations of Propane. We recommend gasoline ge
 gem i gasoline
 gasoline ignite
 ```
+
+## License
+
+Copyright (c) 2012 Richard Lee & Polydice, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
