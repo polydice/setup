@@ -23,7 +23,7 @@ Some apps need to be downloaded from the Internet.
 2. [Google Chrome](http://www.google.com/chrome) (Stable channel)
 3. [Dropbox](https://www.dropbox.com/downloading)
 4. [Skype](http://www.skype.com/go/downloading)
-5. [Propane](http://propaneapp.com/) (for Campfire)
+5. [Hipchat](https://www.hipchat.com/mac) or [Propane](http://propaneapp.com/) (for Campfire)
 6. [Xcode Command Line Utility](https://developer.apple.com/downloads)
 
 ## Shell
