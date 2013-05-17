@@ -64,11 +64,11 @@ else
     brew install ruby-build
   fi
 
-  rbenv install 1.9.3-p327
+  rbenv install 1.9.3-p392
 fi
 
-echo "Set current ruby version to 1.9.3-p327"
-rbenv global 1.9.3-p327
+echo "Set current ruby version to 1.9.3-p392"
+rbenv global 1.9.3-p392
 
 # MySQL
 if `type -P mysqld &>/dev/null`; then
