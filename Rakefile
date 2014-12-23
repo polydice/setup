@@ -13,6 +13,22 @@ namespace :brew do
       Homebrew.install args[:formula]
     end
   end
+
+  namespace :cask do
+    desc "Install app via Homebrew Cask if it's missing"
+    task :install, [:app] do |t, args|
+      if args[:app].nil?
+        puts "Usage: rake brew:cask:install[<app>]"
+        next
+      end
+
+      if HomebrewCask.installed? args[:app]
+        puts "Found #{args[:app]}.app"
+      else
+        HomebrewCask.install args[:app]
+      end
+    end
+  end
 end
 
 
@@ -59,6 +75,17 @@ class Homebrew
 
   def self.upgrade (formula)
     system "brew upgrade #{formula}" unless formula.nil?
+  end
+end
+
+
+class HomebrewCask
+  def self.installed? (app)
+    File.exists? "/Applications/#{app}.app" or File.exists? File.expand_path "~/Applications/#{app}.app"
+  end
+
+  def self.install (app)
+    system "brew cask install #{app}" unless app.nil?
   end
 end
 
