@@ -35,6 +35,29 @@ else
   brew install caskroom/cask/brew-cask
 fi
 
+# rbenv
+rake brew:install[rbenv]
+rake brew:install[ruby-build]
+
+if ! `type -P rbenv &> /dev/null`; then
+  echo "Put rbenv init in shell profile (Bash by default)..."
+  echo "if which rbenv > /dev/null; then eval \"\$(rbenv init -)\"; fi" >> ~/.bash_profile
+  source ~/.bash_profile
+fi
+
+# Ruby 2.1.5
+RUBY_VERSION="2.1.5"
+
+if [[ `rbenv versions` =~ $RUBY_VERSION ]]; then
+  echo "Found Ruby $RUBY_VERSION"
+else
+  brew upgrade ruby-build
+  rbenv install $RUBY_VERSION
+  rbenv rehash
+fi
+
+rbenv global $RUBY_VERSION
+
 
 FORMULAE=( "git" "hub" "git-flow" "xctool" "xcproj" "ios-sim" )
 for formula in "${FORMULAE[@]}"
