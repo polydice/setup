@@ -1,32 +1,13 @@
 namespace :brew do
   desc "Install Homebrew formula if it's missing"
   task :install, [:formula] do |t, args|
-    if args[:formula].nil?
-      puts "Usage: rake brew:install[<formula>]"
-      next
-    end
-
-    if Homebrew.installed? args[:formula]
-      puts "Found #{args[:formula]}"
-    else
-      puts "Installing #{args[:formula]}..."
-      Homebrew.install args[:formula]
-    end
+    install_package args[:formula], Homebrew, "Usage: rake brew:install[<formula>]"
   end
 
   namespace :cask do
     desc "Install app via Homebrew Cask if it's missing"
     task :install, [:app] do |t, args|
-      if args[:app].nil?
-        puts "Usage: rake brew:cask:install[<app>]"
-        next
-      end
-
-      if HomebrewCask.installed? args[:app]
-        puts "Found #{args[:app]}.app"
-      else
-        HomebrewCask.install args[:app]
-      end
+      install_package args[:app], HomebrewCask, "Usage: rake brew:cask:install[<app>]"
     end
   end
 end
@@ -35,22 +16,24 @@ end
 namespace :gem do
   desc "Install gem if it's missing"
   task :install, [:gem] do |t, args|
-    if args[:gem].nil?
-      puts "Usage: rake gem:install[<gem>]"
-      next
-    end
-
-    if RubyGem.installed? args[:gem]
-      puts "Found #{args[:gem]}"
-    else
-      puts "Installing #{args[:gem]}..."
-      RubyGem.install args[:gem]
-    end
+    install_package args[:gem], RubyGem, "Usage: rake gem:install[<gem>]"
   end
 end
 
 
 private
+
+
+def install_package (package, manager, usage = "Usage: rake -T")
+  if package.nil?
+    puts usage
+  elsif manager.installed? package
+    puts "Found #{package}"
+  else
+    puts "Installing #{package}..."
+    manager.install package
+  end
+end
 
 
 class Homebrew
@@ -91,10 +74,8 @@ end
 
 
 class RubyGem
-  @@gems = %x(gem list).split "\n"
-
   def self.installed? (a_gem)
-    @@gems.any? { |item| a_gem == item.split(" ").first }
+    %x(gem list #{a_gem}).split("\n").any? { |item| a_gem == item.split(" ").first }
   end
 
   def self.install (a_gem)
