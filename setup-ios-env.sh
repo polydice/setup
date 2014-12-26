@@ -28,7 +28,7 @@ else
 fi
 
 # Brew cask
-if `type -P brew-cask.rb &> /dev/null`; then
+if `type -P brew-cask &> /dev/null`; then
   echo "Found brew-cask"
 else
   echo "Installing brew-cask..."
